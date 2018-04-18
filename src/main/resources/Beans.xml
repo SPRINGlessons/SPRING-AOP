@@ -8,63 +8,18 @@
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 
 
+    <aop:aspectj-autoproxy />
 
 
     <bean id="op"
           class="com.antonromanov.TrackOperation">
     </bean>
 
-    <bean id="thinker"
-          class="com.antonromanov.Volunteer">
-
-    </bean>
 
 
     <!-- Aspect -->
-    <bean id="magican" class="com.antonromanov.Magician"/>
-    <bean id="businessAspect" class="com.antonromanov.MyFirstAspect"/>
+    <bean id="secondASPECT" class="com.antonromanov.AnnotatedAspect"/>
 
-    <!-- DEFINING THE AOP ASPECT -->
-
-    <aop:config>
-        <aop:aspect ref="businessAspect">
-
-
-            <aop:pointcut id="businessExp"
-                          expression="execution(* com.antonromanov.TrackOperation*.*(..))"/>
-            <aop:before
-                    method="before"
-                    pointcut-ref="businessExp"/>
-
-
-            <!-- Перед выступлением
-        <aop:before pointcut=
-                            "execution(* com.tutorialspoint.Performer.perform(..))"
-                    method="turnOffCellPhones" />  Перед выступлением
-        <aop:after-returning pointcut=
-                                     "execution(* com.tutorialspoint.Performer.perform(..))"
-                             method="applaud" />  После выступления
-        <aop:after-throwing pointcut=
-                                    "execution(* com.tutorialspoint.Performer.perform(..))"
-                            method="demandRefund" />  После неудачного выступления -->
-
-
-        </aop:aspect>
-
-        <aop:aspect ref="magican">
-
-            <aop:pointcut id="thinking" expression="execution(*
-com.antonromanov.Thinker.thinkOfSomething(String))
-and args(thoughts) and bean(thinker)" />
-
-            <aop:before
-                    pointcut-ref="thinking"
-                    method="interceptThoughts"
-                    arg-names="thoughts" />
-
-
-        </aop:aspect>
-    </aop:config>
 
 
 </beans>
